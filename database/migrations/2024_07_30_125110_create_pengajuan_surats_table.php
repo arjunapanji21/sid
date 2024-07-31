@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('pengajuan_surats', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->bigInteger('data_surat_id');
-            $table->string('keterangan')->nullable();
+            $table->string('jenis_surat')->nullable();
             $table->string('status_pengajuan')->nullable();
             $table->string('tgl_pengajuan')->nullable();
             $table->string('tgl_selesai')->nullable();
+            $table->text('data')->nullable();
+            $table->text('file')->nullable();
             $table->timestamps();
         });
     }

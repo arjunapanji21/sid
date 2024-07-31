@@ -5,10 +5,10 @@
 <section class="">
     <div class="">
         <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Pembuatan Surat</h2>
-        <form action="{{route('upload_data_warga')}}" method="post">
+        <form action="{{route('surat_keterangan_kematian')}}" method="post">
             @csrf
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                <div class="w-full">
+                <div class="w-full col-span-2">
                     <label for="jenis_surat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
                         Surat</label>
                     <select id="jenis_surat" name="jenis_surat"
@@ -79,15 +79,22 @@
                         placeholder="Pekerjaan alm/h" required="">
                 </div>
                 <div class="w-full">
+                    <label for="tempat_wafat"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tempat Wafat</label>
+                    <input type="text" name="tempat_wafat" id="tempat_wafat"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        placeholder="Tempat wafat alm/h" required="">
+                </div>
+                <div class="w-full">
                     <label for="tgl_wafat"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tgl. Wafat</label>
-                    <input type="text" name="tgl_wafat" id="tgl_wafat"
+                    <input type="date" name="tgl_wafat" id="tgl_wafat"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Tanggal wafat alm/h" required="">
                 </div>
                 <div class="w-full">
                     <label for="nama_orangtua"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Orang Tua</label>
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Orang Tua Kandung</label>
                     <input type="text" name="nama_orangtua" id="nama_orangtua"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Nama orang tua alm/h" required="">
@@ -98,7 +105,7 @@
                     class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                     Kirim
                 </button>
-                <a href="{{route('data_warga')}}"
+                <a href="{{route('pengajuan_surat')}}"
                     class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-primary-700  rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-gray-200">
                     Batalkan
                 </a>

@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-50">
     
-<nav class="bg-primary-700 shadow-lg dark:bg-primary-900">
+<nav class="bg-primary-700  dark:bg-primary-900">
     <div class="max-w-screen-xl flex flex-wrap items-center gap-4 mx-auto p-4">
         <div class="text-center">
             <button class="inline-flex items-center justify-center p-2 w-10 h-10 text-sm text-white hover:text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-hamburger" aria-expanded="false" type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
@@ -84,9 +84,9 @@
                   </svg>
             </button>
             <ul id="data-master" class="hidden py-2 space-y-2">
-                  <li>
+                  {{-- <li>
                      <a href="{{route('data_surat')}}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Data Surat</a>
-                  </li>
+                  </li> --}}
                   <li>
                      <a href="{{route('data_warga')}}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Data Warga</a>
                   </li>
@@ -112,4 +112,5 @@
     @yield('content')
   </div>
 </body>
+   @yield('script')
 </html>

@@ -63,6 +63,9 @@ class DataWargaController extends Controller
         $warga->status = $data['status'];
         $warga->pekerjaan = $data['pekerjaan'];
         $warga->kewarganegaraan = $data['kewarganegaraan'];
+        $pengguna = User::find($warga->user_id);
+        $pengguna->nama = $data['nama'];
+        $pengguna->save();
         $warga->save();
         
         return redirect()->route('data_warga')->with('success', "Data warga berhasil diperbarui!");
@@ -74,5 +77,13 @@ class DataWargaController extends Controller
             'warga' => DataWarga::find($id)
         ];
         return view('lihat_data_warga', $props);
+    }
+
+    public function hapus_data_warga($id){
+        $warga = DataWarga::find($id);
+        $pengguna = User::find($warga->user_id);
+        $warga->delete();
+        $pengguna->delete();
+        return redirect()->route('data_warga')->with('success', "Data warga berhasil dihapus!");
     }
 }

@@ -64,7 +64,7 @@
                                         </li>
                                     </ul>
                                     <div class="py-1">
-                                        <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Hapus</a>
+                                        <a href="{{route('hapus_data_warga', $row->id)}}" onclick="return confirm('Hapus {{$row->nama}} dari data warga?')" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Hapus</a>
                                     </div>
                                 </div>
                             </td>

@@ -28,12 +28,21 @@ class PageController extends Controller
     }
 
     public function beranda(){
-        $props = [
-            'title' => 'Beranda',
-            'pengajuan' => PengajuanSurat::limit(5),
-            'jumlah_pengajuan' => count(PengajuanSurat::all()),
-            'jumlah_warga' => count(DataWarga::all()),
-        ];
+        if(auth()->user()->role == "Admin"){
+            $props = [
+                'title' => 'Beranda',
+                'jumlah_pengajuan' => count(PengajuanSurat::all()),
+                'jumlah_warga' => count(DataWarga::all()),
+                'pengajuan' => PengajuanSurat::orderBy('created_at', 'desc')->limit(5)->get(),
+            ];
+        }else{
+            $props = [
+                'title' => 'Beranda',
+                'jumlah_pengajuan' => count(PengajuanSurat::all()),
+                'jumlah_warga' => count(DataWarga::all()),
+                'pengajuan' => PengajuanSurat::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->limit(5)->get(),
+            ];
+        }
         return view('beranda', $props);
     }
     public function buat_surat(){
@@ -43,9 +52,17 @@ class PageController extends Controller
         return view('buat_surat', $props);
     }
     public function pengajuan_surat(){
-        $props = [
-            'title' => 'Pengajuan Surat',
-        ];
+        if(auth()->user()->role == "Admin"){
+            $props = [
+                'title' => 'Pengajuan Surat',
+                'pengajuan' => PengajuanSurat::orderBy('created_at', 'desc')->get(),
+            ];
+        }else{
+            $props = [
+                'title' => 'Pengajuan Surat',
+                'pengajuan' => PengajuanSurat::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get(),
+            ];
+        }
         return view('pengajuan_surat', $props);
     }
     public function arsip(){
@@ -86,5 +103,13 @@ class PageController extends Controller
             'pengguna' => User::orderBy('nama', 'asc')->get(),
         ];
         return view('data_pengguna', $props);
+    }
+
+    public function pengajuan_surat_keterangan_kematian($id){
+        $props = [
+            'title' => 'Surat Keterangan Kematian',
+            'pengajuan' => PengajuanSurat::find($id),
+        ];
+        return view('format_surat/surat_keterangan_kematian', $props);
     }
 }
