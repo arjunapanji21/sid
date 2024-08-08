@@ -21,7 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pengajuan-surat/baru', [PageController::class, 'buat_surat'])->name('buat_surat');
     Route::get('/pengajuan-surat/arsip', [PageController::class, 'arsip'])->name('arsip');
     Route::get('/informasi', [PageController::class, 'informasi_desa'])->name('informasi_desa');
-    Route::get('/informasi/{id}', [PageController::class, 'lihat_informasi_desa'])->name('lihat_informasi_desa');
+    Route::get('/informasi/show/{id}', [PageController::class, 'lihat_informasi_desa'])->name('lihat_informasi_desa');
     Route::get('/informasi/baru', [PageController::class, 'tambah_informasi_desa'])->name('tambah_informasi_desa');
     Route::post('/informasi/baru/submit', [PageController::class, 'submit_informasi_desa'])->name('submit_informasi_desa');
     Route::get('/informasi/{id}/ubah', [PageController::class, 'ubah_informasi_desa'])->name('ubah_informasi_desa');
