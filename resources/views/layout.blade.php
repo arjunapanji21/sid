@@ -61,9 +61,9 @@
                   <li>
                      <a href="{{route('pengajuan_surat')}}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Status Pengajuan</a>
                   </li>
-                  {{-- <li>
+                  <li>
                      <a href="{{route('arsip')}}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Arsip</a>
-                  </li> --}}
+                  </li>
             </ul>
          </li>
          <li>
