@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->string('judul');
-            $table->string('konten');
+            $table->text('konten');
             $table->string('tanggal');
             $table->integer('jumlah_dilihat')->default(0);
             $table->timestamps();

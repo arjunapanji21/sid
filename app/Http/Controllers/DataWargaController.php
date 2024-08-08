@@ -10,7 +10,7 @@ class DataWargaController extends Controller
 {
     public function upload_data_warga(Request $request){
         $request->validate([
-            "nik" => "required|max:255",
+            "nik" => "required|max:255|unique:data_wargas",
             "nama" => "required|max:255",
             "tempat_lahir" => "required|max:255",
             "tgl_lahir" => "required|max:255",
@@ -21,13 +21,12 @@ class DataWargaController extends Controller
             "status" => "required|max:255",
             "pekerjaan" => "required|max:255",
             "kewarganegaraan" => "required|max:255",
-            "email" => "required|email|max:255|unique:users",
             "password" => "required|confirmed",
         ]);
         $data = $request->all();
         $user_id = User::create([
             'nama' => $data['nama'],
-            'email' => $data['email'],
+            'username' => $data['nik'],
             'password' => bcrypt($data['password']),
             'role' => "User",
         ])->id;

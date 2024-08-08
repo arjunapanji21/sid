@@ -9,7 +9,7 @@
 </head>
 <body>
     <header class="sticky top-0 shadow-lg">
-        <nav class="bg-primary-700  px-4 lg:px-6 py-2.5 ">
+        <nav class="bg-primary-700 px-4 lg:px-6 py-2.5 ">
             <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                 <a href="#" class="flex items-center">
                     <span class="self-center text-white text-xl font-semibold whitespace-nowrap dark:text-white">SID Ngaol Ilir</span>
@@ -50,11 +50,11 @@
                 </a>
                 <a href="#sejarah" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                     Tentang Desa
-                </a> 
+                </a>
             </div>
             <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-                <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup">
-            </div>                
+                <img src="{{asset('images/landing_page.svg')}}" alt="mockup">
+            </div>
         </div>
     </section>
 
@@ -116,7 +116,7 @@
     <footer class="p-4 bg-gray-100 md:p-8 lg:p-10 dark:bg-gray-800">
         <div class="mx-auto max-w-screen-xl text-center">
             <a href="#" class="flex justify-center items-center text-2xl font-semibold text-gray-900 dark:text-white">
-                SID Ngaol Ilir    
+                SID Ngaol Ilir
             </a>
             <p class="my-6 text-gray-500 dark:text-gray-400">Sistem Informasi Desa Ngaol Ilir</p>
             <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="#" class="hover:underline">SID Ngaol Ilir</a>. All Rights Reserved.</span>

@@ -1,13 +1,23 @@
-@extends('layout')
-
-@section('content')
-    <div class="w-full flex flex-col gap-4 justify-center max-w-screen-lg mx-auto bg-white p-14">
-        <div class="mx-auto">
-            <h1 class="font-bold text-sm uppercase underline underline-offset-4">{{$title}}</h1>
-            <p class="text-sm uppercase">NO. </p>
-        </div>
-        <p class="text-sm">Yang bertanda tangan di bawah ini Kepala Desa Ngaol Ilir Kecamatan Tabir Barat Kabupaten Merangin menerangkan bahwa:</p>
-        <table class="text-sm">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body style="margin: auto;">
+    <br>
+    <br>
+    <br>
+    <div style="text-align: center; line-height: 25%;">
+        <h3 style="text-decoration: underline">{{$title}}</h3>
+        <p>NO. {{$pengajuan->no_surat}}</p>
+    </div>
+    <br>
+    <div style="text-align: justify">
+        <p>Yang bertanda tangan di bawah ini Kepala Desa Ngaol Ilir Kecamatan Tabir Barat Kabupaten Merangin menerangkan bahwa:</p>
+        <table style="margin: auto; width: 90%">
             <tr>
                 <td>Nama</td>
                 <td>:</td>
@@ -39,19 +49,16 @@
                 <td>{{explode("#", $pengajuan->data)[7]}}</td>
             </tr>
         </table>
-        <p class="text-sm">Adalah benar warga kami yang telah meninggal dunia pada tanggal {{date('d F Y', strtotime(explode("#", $pengajuan->data)[9]))}} di {{explode("#", $pengajuan->data)[8]}}.</p>
-        <p class="text-sm">Demikian surat keterangan kematian ini kami buat untuk dapat dipergunakan sebagaimana mestinya.</p>
+        <p>Adalah benar warga kami yang telah meninggal dunia pada tanggal {{date('d F Y', strtotime(explode("#", $pengajuan->data)[9]))}} di {{explode("#", $pengajuan->data)[8]}}.</p>
+        <p>Demikian surat keterangan kematian ini kami buat untuk dapat dipergunakan sebagaimana mestinya.</p>
         <br>
-        <p class="text-sm text-right">Ngaol Ilir, {{date('d F Y', strtotime($pengajuan->updated_at))}}</p>
-        <p class="text-sm text-right">Kepala Desa,</p>
-        <br>
-        <br>
-        <p class="text-sm font-bold underline text-right">Syamsir Alam</p>
+        <div style="width: 30%; margin-left: auto">
+            <p>Ngaol Ilir, {{date('d-m-Y', strtotime($pengajuan->updated_at))}}</p>
+            <p>Kepala Desa,</p>
+            <br>
+            <br>
+            <p>Syamsir Alam</p>
+        </div>
     </div>
-@endsection
-
-@section('script')
-    <script>
-        window.onload = function() { window.print(); }
-    </script>
-@endsection
+</body>
+</html>

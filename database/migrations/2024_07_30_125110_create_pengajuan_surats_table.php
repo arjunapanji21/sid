@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pengajuan_surats', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
+            $table->string('no_surat')->nullable();
             $table->string('jenis_surat')->nullable();
             $table->string('status_pengajuan')->nullable();
             $table->string('tgl_pengajuan')->nullable();

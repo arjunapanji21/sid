@@ -8,7 +8,7 @@
         <!-- Start coding here -->
         <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
             <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                <div class="w-full md:w-1/2">
+                {{-- <div class="w-full md:w-1/2">
                     <form class="flex items-center">
                         <label for="simple-search" class="sr-only">Search</label>
                         <div class="relative w-full">
@@ -20,7 +20,7 @@
                             <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search" required="">
                         </div>
                     </form>
-                </div>
+                </div> --}}
                 <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                     <a href="{{route('buat_surat')}}" class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                         <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -34,6 +34,7 @@
                 <table class="text-sm w-full text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
+                            <th scope="col" class="px-4 py-3">No. Surat</th>
                             <th scope="col" class="px-4 py-3">Tgl. Pengajuan</th>
                             <th scope="col" class="px-4 py-3">Diajukan Oleh</th>
                             <th scope="col" class="px-4 py-3">Jenis Surat</th>
@@ -46,7 +47,8 @@
                     <tbody>
                         @foreach($pengajuan as $row)
                         <tr class="border-b dark:border-gray-700">
-                            <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{date('d/m/Y', strtotime($row->created_at))}}</th>
+                            <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$row->no_surat}}</th>
+                            <td class="px-4 py-3">{{date('d/m/Y', strtotime($row->created_at))}}</td>
                             <td class="px-4 py-3">{{$row->user->nama}}</td>
                             <td class="px-4 py-3">{{$row->jenis_surat}}</td>
                             <td class="px-4 py-3">
@@ -60,14 +62,14 @@
                                 <div id="data{{$row->id}}" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                     <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="data{{$row->id}}-button">
                                         <li>
-                                            <a href="{{route('pengajuan_surat_keterangan_kematian', $row->id)}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Lihat</a>
+                                            <a href="{{route('show_pengajuan_surat', $row->id)}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Download</a>
                                         </li>
                                         <li>
-                                            <a href="{{route('pengajuan_surat_keterangan_kematian', $row->id)}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Ubah Status</a>
+                                            <a href="{{route('show_pengajuan_surat', $row->id)}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Ubah Status</a>
                                         </li>
                                     </ul>
                                     <div class="py-1">
-                                        <a onclick="return confirm('Hapus {{$row->nama}} dari data warga?')" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Hapus</a>
+                                        <a href="{{route('hapus_pengajuan_surat', $row->id)}}" onclick="return confirm('Hapus pengajuan surat ini?')" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Hapus</a>
                                     </div>
                                 </div>
                             </td>

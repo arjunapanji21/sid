@@ -8,7 +8,7 @@
     <div class="">
         <!-- Start coding here -->
         <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-            <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+            {{-- <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                 <div class="w-full md:w-1/2">
                     <form class="flex items-center">
                         <label for="simple-search" class="sr-only">Search</label>
@@ -22,13 +22,13 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> --}}
             <div class="overflow-x-auto min-h-80">
                 <table class="text-sm w-full text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-4 py-3">Nama</th>
-                            <th scope="col" class="px-4 py-3">Email</th>
+                            <th scope="col" class="px-4 py-3">Username</th>
                             <th scope="col" class="px-4 py-3">Role</th>
                             {{-- <th scope="col" class="px-4 py-3">
                                 <span class="sr-only">Actions</span>
@@ -39,7 +39,7 @@
                         @foreach($pengguna as $row)
                         <tr class="border-b dark:border-gray-700">
                             <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$row->nama}}</th>
-                            <td class="px-4 py-3">{{$row->email}}</td>
+                            <td class="px-4 py-3">{{$row->username}}</td>
                             <td class="px-4 py-3">{{$row->role}}</td>
                             {{-- <td class="px-4 py-3 flex items-center justify-end">
                                 <button id="data-{{$row->id}}-button" data-dropdown-toggle="data-{{$row->id}}" class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" type="button">
