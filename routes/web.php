@@ -13,13 +13,14 @@ Route::post('/registrasi/submit', [PageController::class, 'registrasi_submit'])-
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/auth', [AuthController::class, 'auth'])->name('auth');
 Route::post('/data-warga/baru/simpan', [DataWargaController::class, 'upload_data_warga'])->name('upload_data_warga');
+Route::get('/data-warga/{id}/konfirmasi', [DataWargaController::class, 'konfirmasi_pengguna_baru'])->name('konfirmasi_data_warga');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/beranda', [PageController::class, 'beranda'])->name('beranda');
     Route::get('/pengajuan-surat', [PageController::class, 'pengajuan_surat'])->name('pengajuan_surat');
     Route::get('/pengajuan-surat/{id}/show', [PageController::class, 'show_pengajuan_surat'])->name('show_pengajuan_surat');
     Route::get('/pengajuan-surat/baru', [PageController::class, 'buat_surat'])->name('buat_surat');
-    Route::get('/pengajuan-surat/arsip', [PageController::class, 'arsip'])->name('arsip');
+    Route::get('/pengajuan-surat/arsip', [PageController::class, 'pengajuan_surat'])->name('arsip');
     Route::get('/informasi', [PageController::class, 'informasi_desa'])->name('informasi_desa');
     Route::get('/informasi/show/{id}', [PageController::class, 'lihat_informasi_desa'])->name('lihat_informasi_desa');
     Route::get('/informasi/baru', [PageController::class, 'tambah_informasi_desa'])->name('tambah_informasi_desa');

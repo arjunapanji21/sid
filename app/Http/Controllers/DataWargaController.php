@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataWarga;
+use App\Models\NewUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -24,15 +25,38 @@ class DataWargaController extends Controller
             "password" => "required|confirmed",
         ]);
         $data = $request->all();
+        NewUser::create($data);
+        return redirect()->route('data_warga')->with('success', "Data warga berhasil disimpan!");
+    }
+
+    public function konfirmasi_pengguna_baru($id){
+        $newUser = NewUser::find($id);
+        $newUser->konfirmasi = "Confirmed";
+        $newUser->save();
         $user_id = User::create([
-            'nama' => $data['nama'],
-            'username' => $data['nik'],
-            'password' => bcrypt($data['password']),
+            'nama' => $newUser->nama,
+            'username' => $newUser->nik,
+            'password' => bcrypt($newUser->password),
             'role' => "User",
         ])->id;
-        $data['user_id'] = $user_id;
-        DataWarga::create($data);
-        return redirect()->route('data_warga')->with('success', "Data warga berhasil disimpan!");
+        $newUser->user_id = $user_id;
+        DataWarga::create([
+           'user_id' => $newUser->user_id,
+           'nama' => $newUser->nama,
+           'nik' => $newUser->nik,
+           'tempat_lahir' => $newUser->tempat_lahir,
+           'tgl_lahir' => $newUser->tgl_lahir,
+           'jk' => $newUser->jk,
+           'gol_darah' => $newUser->gol_darah,
+           'alamat' => $newUser->alamat,
+           'agama' => $newUser->agama,
+           'status' => $newUser->status,
+           'pekerjaan' => $newUser->pekerjaan,
+           'kewarganegaraan' => $newUser->kewarganegaraan,
+           'pasfoto' => $newUser->pasfoto,
+           'ktp' => $newUser->ktp,
+        ]);
+        return redirect()->route('data_pengguna')->with('success', "Data pengguna berhasil dikonfirmasi!");
     }
 
     public function update_data_warga($id, Request $request){

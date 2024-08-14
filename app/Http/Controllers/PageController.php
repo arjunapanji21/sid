@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataWarga;
+use App\Models\NewUser;
 use App\Models\PengajuanSurat;
 use App\Models\InformasiDesa;
 use App\Models\User;
@@ -45,6 +46,7 @@ class PageController extends Controller
                 'jumlah_pengajuan' => count(PengajuanSurat::all()),
                 'jumlah_warga' => count(DataWarga::all()),
                 'pengajuan' => PengajuanSurat::orderBy('created_at', 'desc')->limit(5)->get(),
+                'new_user' => NewUser::where('konfirmasi', 'Pending')->orderBy('created_at', 'desc')->limit(5)->get(),
             ];
         }else{
             $props = [
@@ -149,6 +151,7 @@ class PageController extends Controller
         $props = [
             'title' => 'Data Pengguna',
             'pengguna' => User::orderBy('nama', 'asc')->get(),
+            'new_user' => NewUser::where('konfirmasi', 'Pending')->orderBy('created_at', 'desc')->get(),
         ];
         return view('data_pengguna', $props);
     }

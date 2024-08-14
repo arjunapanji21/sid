@@ -8,8 +8,54 @@
     <div class="">
         <!-- Start coding here -->
         <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-            {{-- <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                <div class="w-full md:w-1/2">
+            
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+                <h3 class="font-semibold text-lg">Menunggu Konfirmasi</h3>
+            </div>
+            <div class="overflow-x-auto min-h-80">
+                <table class="text-sm w-full text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-4 py-3">Tgl. Bergabung</th>
+                            <th scope="col" class="px-4 py-3">Nama</th>
+                            <th scope="col" class="px-4 py-3">NIK</th>
+                            <th scope="col" class="px-4 py-3">Alamat</th>
+                            <th scope="col" class="px-4 py-3 text-center">Status</th>
+                            <th scope="col" class="px-4 py-3">
+                                <span class="sr-only">Actions</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($new_user as $row)
+                        <tr class="border-b dark:border-gray-700">
+                            <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{date('d/m/Y', strtotime($row->created_at))}}</th>
+                            <td class="px-4 py-3">{{$row->nama}}</td>
+                            <td class="px-4 py-3">{{$row->nik}}</td>
+                            <td class="px-4 py-3">{{$row->alamat}}</td>
+                            <td class="px-4 py-3 text-center"><span class="bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300">Belum Di Konfirmasi</span></td>
+                            {{-- <td class="px-4 py-3">
+                                <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{$row->status_pengajuan}}</span>
+                            </td> --}}
+                                <td class="px-4 py-3 flex items-center justify-end">
+                                    <a href="{{route('konfirmasi_data_warga', $row->id)}}" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Konfirmasi</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </section>
+
+<section class="">
+    <div class="">
+        <!-- Start coding here -->
+        <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+                <h3 class="font-semibold text-lg">Verified User</h3>
+                {{-- <div class="w-full md:w-1/2">
                     <form class="flex items-center">
                         <label for="simple-search" class="sr-only">Search</label>
                         <div class="relative w-full">
@@ -21,8 +67,8 @@
                             <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search" required="">
                         </div>
                     </form>
-                </div>
-            </div> --}}
+                </div> --}}
+            </div>
             <div class="overflow-x-auto min-h-80">
                 <table class="text-sm w-full text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
