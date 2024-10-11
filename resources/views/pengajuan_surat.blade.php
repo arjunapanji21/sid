@@ -61,15 +61,27 @@
                                 </button>
                                 <div id="data{{$row->id}}" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                     <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="data{{$row->id}}-button">
+                                        @if(auth()->user()->role == "Admin")
+                                        <li>
+                                            <a href="{{route('edit_pengajuan_surat', $row->id)}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit Surat</a>
+                                        </li>
                                         <li>
                                             <a href="{{route('show_pengajuan_surat', $row->id)}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Download</a>
                                         </li>
-                                        {{-- <li>
-                                            <a href="{{route('show_pengajuan_surat', $row->id)}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Ubah Status</a>
-                                        </li> --}}
+                                        @elseif(auth()->user()->role != "Admin" && !is_null($row->file))
+                                        <li>
+                                            <a href="{{$row->file}}" download class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Download</a>
+                                        </li>
+                                        @endif
                                     </ul>
                                     <div class="py-1">
+                                        @if(auth()->user()->role == "Admin")
                                         <a href="{{route('hapus_pengajuan_surat', $row->id)}}" onclick="return confirm('Hapus pengajuan surat ini?')" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Hapus</a>
+                                        @elseif(auth()->user()->role != "Admin" && $row->status_pengajuan == "Sedang Diproses")
+                                        <a onclick="alert('Surat sedang diproses, pengajuan surat tidak bisa dibatalkan!')" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Batalkan</a>
+                                        @elseif(auth()->user()->role != "Admin" && $row->status_pengajuan == "Dalam Antrean")
+                                        <a href="{{route('hapus_pengajuan_surat', $row->id)}}" onclick="return confirm('Hapus pengajuan surat ini?')" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Batalkan</a>
+                                        @endif
                                     </div>
                                 </div>
                             </td>

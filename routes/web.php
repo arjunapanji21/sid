@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class, 'index'])->name('index');
 Route::get('/login', [PageController::class, 'login'])->name('login');
 Route::get('/registrasi', [PageController::class, 'registrasi'])->name('registrasi');
-Route::post('/registrasi/submit', [PageController::class, 'registrasi_submit'])->name('registrasi_submit');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/auth', [AuthController::class, 'auth'])->name('auth');
 Route::post('/data-warga/baru/simpan', [DataWargaController::class, 'upload_data_warga'])->name('upload_data_warga');
@@ -19,6 +18,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/beranda', [PageController::class, 'beranda'])->name('beranda');
     Route::get('/pengajuan-surat', [PageController::class, 'pengajuan_surat'])->name('pengajuan_surat');
     Route::get('/pengajuan-surat/{id}/show', [PageController::class, 'show_pengajuan_surat'])->name('show_pengajuan_surat');
+    Route::get('/pengajuan-surat/{id}/edit', [PageController::class, 'edit_pengajuan_surat'])->name('edit_pengajuan_surat');
+    Route::post('/pengajuan-surat/{id}/update', [SuratController::class, 'update_pengajuan_surat'])->name('update_pengajuan_surat');
     Route::get('/pengajuan-surat/baru', [PageController::class, 'buat_surat'])->name('buat_surat');
     Route::get('/pengajuan-surat/arsip', [PageController::class, 'pengajuan_surat'])->name('arsip');
     Route::get('/informasi', [PageController::class, 'informasi_desa'])->name('informasi_desa');

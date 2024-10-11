@@ -51,7 +51,7 @@ class PageController extends Controller
         }else{
             $props = [
                 'title' => 'Beranda',
-                'jumlah_pengajuan' => count(PengajuanSurat::all()),
+                'jumlah_pengajuan' => count(PengajuanSurat::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get()),
                 'jumlah_warga' => count(DataWarga::all()),
                 'pengajuan' => PengajuanSurat::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->limit(5)->get(),
             ];
@@ -198,4 +198,14 @@ class PageController extends Controller
             // return view('format_surat/surat_pengantar_pindah', $props);
         }
     }
+
+    public function edit_pengajuan_surat($id) {
+        $pengajuan = PengajuanSurat::find($id);
+        $props = [
+            'title' => 'Edit Pengajuan Surat',
+            'pengajuan' => $pengajuan,
+        ];
+        return view('edit_pengajuan_surat', $props);
+    }
+
 }

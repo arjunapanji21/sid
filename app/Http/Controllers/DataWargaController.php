@@ -6,6 +6,7 @@ use App\Models\DataWarga;
 use App\Models\NewUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DataWargaController extends Controller
 {
@@ -26,7 +27,11 @@ class DataWargaController extends Controller
         ]);
         $data = $request->all();
         NewUser::create($data);
-        return redirect()->route('data_warga')->with('success', "Data warga berhasil disimpan!");
+        if(Auth::check()){
+            return redirect()->route('data_warga')->with('success', "Data warga berhasil disimpan!");
+        } else {
+            return redirect()->route('login')->with('success', "Pembuatan akun berhasil!. Mohon tunggu beberapa saat sampai admin melakukan konfirmasi.");
+        }
     }
 
     public function konfirmasi_pengguna_baru($id){

@@ -43,10 +43,33 @@ class SuratController extends Controller
             'user_id' => auth()->user()->id,
             'no_surat' => $nomor_surat,
             'jenis_surat' => $request['jenis_surat'],
-            'status_pengajuan' => "Diproses",
+            'status_pengajuan' => "Dalam Antrean",
+            'tgl_pengajuan' => date(now()),
             'data' => $data,
         ]);
         return redirect()->route('pengajuan_surat')->with('success', "Pengajuan surat berhasil di kirim!");
+    }
+
+    public function update_pengajuan_surat(Request $request, $id){
+        $pengajuan = PengajuanSurat::find($id);
+        $status = $request['status_pengajuan'];
+        $file = null;
+        if(!is_null($request['file'])){
+            $file = $request->file('file');
+            $extension = $file->extension();
+            $folder = public_path('uploads/surat/');
+            $filename = $pengajuan->id . "_" . str_replace("/","_", $pengajuan->no_surat) . "." . $extension;
+            $file->move($folder, $filename);
+            $status = "Selesai";
+            $pengajuan->tgl_selesai = date(now());
+        }
+        $request->request->remove('_token','status_pengajuan', 'file');
+        $data = implode("#", $request->all());
+        $pengajuan->status_pengajuan = $status;
+        $pengajuan->data = $data;
+        $pengajuan->file = $filename;
+        $pengajuan->save();
+        return redirect()->route('pengajuan_surat')->with('success', "Pengajuan surat berhasil di update!");
     }
 
     public function hapus_pengajuan_surat($id) {
